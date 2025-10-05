@@ -1,6 +1,11 @@
-def main():
-    print("Hello from hermes!")
+from fastapi import FastAPI
 
 
-if __name__ == "__main__":
-    main()
+app = FastAPI()
+
+@app.get("/")
+def health_check():
+    return {
+        "message": "Mailr API v0.0.1",
+        "status": "ok"
+    }
