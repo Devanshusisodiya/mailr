@@ -1,0 +1,1 @@
+This is the mailr monorepo, purely for experimentation and POC purpose. It might evolve into a rev generating project...but until then it is what it is.
