@@ -1,0 +1,24 @@
+# ───────────────────────────────
+# FastAPI + uv + Uvicorn Dockerfile
+# Project: hermes
+# ───────────────────────────────
+
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
+
+# Set working directory inside the container
+WORKDIR /app
+
+# Copy project files
+COPY hermes/ ./hermes/
+
+# Change directory context to the project root
+WORKDIR /app/hermes
+
+# Install project dependencies from pyproject.toml
+RUN uv sync --frozen --no-cache
+
+# Expose FastAPI port
+EXPOSE 8000
+
+# Run app (assuming main:app is inside main.py)
+CMD ["uv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]

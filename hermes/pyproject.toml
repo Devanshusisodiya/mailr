@@ -12,6 +12,7 @@ dependencies = [
     "flake8>=7.3.0",
     "mypy>=1.18.2",
     "psycopg2-binary>=2.9.11",
+    "fastapi[standard]>=0.118.0",
     "rabbitmq>=0.2.0",
     "sqlmodel>=0.0.25",
     "tox>=4.32.0",
