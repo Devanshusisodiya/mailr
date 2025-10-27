@@ -14,3 +14,6 @@ engine = create_engine(DATABASE_URL, echo=True)
 def get_session() -> Generator[Session, None, None]:
     with Session(engine) as session:
         yield session
+
+print("Loaded DATABASE_URL:", DATABASE_URL)
+
