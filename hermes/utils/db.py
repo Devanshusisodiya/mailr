@@ -1,16 +1,26 @@
-import os
-from dotenv import load_dotenv
-from sqlmodel import create_engine, Session
+from sqlmodel import create_engine, Session, SQLModel
+from hermes.config import settings
 from typing import Generator
+from hermes.models.models import (
+    User,
+    WarmupEmail,
+    WarmupSchedule,
+    Contact,
+    WarmupPair,
+    EmailSend
+)
 
 
-load_dotenv()
+engine = create_engine(settings.database_url, echo=True)
 
 
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:root@localhost/postgres")
-engine = create_engine(DATABASE_URL, echo=True)
+def create_tables():
+    """
+    Strictly to be used for dev purposes only.
+    """
+    SQLModel.metadata.create_all(engine)
 
 
-def get_session() -> Generator[Session, None, None]:
+def get_db():
     with Session(engine) as session:
         yield session
